@@ -1,0 +1,35 @@
+[
+  {
+    "type": "person",
+    "name": "Caroline Dribbsson",
+    "status": "Unactivated",
+    "avatar": "https://i.pravatar.cc/40?img=1"
+  },
+  {
+    "type": "person",
+    "name": "Adam Cadribean",
+    "status": "Active 1w ago",
+    "avatar": "https://i.pravatar.cc/40?img=2"
+  },
+  {
+    "type": "file",
+    "name": "final_dribbble_presentation.jpg",
+    "details": "in Presentations • Edited 1w ago"
+  },
+  {
+    "type": "person",
+    "name": "Margareth Cendrbgssen",
+    "status": "Active 1w ago",
+    "avatar": "https://i.pravatar.cc/40?img=3"
+  },
+  {
+    "type": "file",
+    "name": "dribbble_animation.avi",
+    "details": "in Videos • Added 1y ago"
+  },
+  {
+    "type": "folder",
+    "name": "Dribbble Folder",
+    "details": "12 Files • in Projects • Edited 2m ago"
+  }
+]

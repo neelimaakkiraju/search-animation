@@ -1,25 +1,102 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import data from "./data.json";
+import SearchBar from "./components/SearchBar";
+import Tabs from "./components/Tabs";
+import FilterMenu from "./components/FilterMenu";
+import ResultList from "./components/ResultList";
 
-function App() {
+export default function App() {
+  const [query, setQuery] = useState("");
+  const [activeTab, setActiveTab] = useState("all");
+  const [filters, setFilters] = useState({
+    files: true,
+    people: true,
+    chats: false,
+    lists: false,
+  });
+  const [showResults, setShowResults] = useState(true); // show all data initially
+  const [animating, setAnimating] = useState(false);
+
+  const filtered = data.filter((item) => {
+    if (query && !item.name.toLowerCase().includes(query.toLowerCase()))
+      return false;
+    if (item.type === "file" && !filters.files) return false;
+    if (item.type === "person" && !filters.people) return false;
+    if (item.type === "folder" && !filters.files) return false;
+    return true;
+  });
+
+  const tabFiltered =
+    activeTab === "all"
+      ? filtered
+      : filtered.filter((d) => d.type === activeTab);
+
+  const counts = {
+    all: filtered.length,
+    files: filtered.filter((d) => d.type === "file" || d.type === "folder")
+      .length,
+    people: filtered.filter((d) => d.type === "person").length,
+  };
+
+  // Show results if showResults is true
+  const handleSearch = (val) => {
+    setQuery(val);
+    setShowResults(true);
+    setActiveTab("all");
+  };
+
+  const handleClear = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setShowResults(false);
+      setQuery("");
+      setActiveTab("all");
+      setAnimating(false);
+    }, 350); // duration for smooth animation
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md overflow-hidden">
+        <div className="flex items-center justify-between">
+          <SearchBar
+            query={query}
+            setQuery={handleSearch}
+            clear={handleClear}
+          />
+          {showResults && (
+            <FilterMenu filters={filters} setFilters={setFilters} />
+          )}
+        </div>
+        <div
+          className={
+            showResults
+              ? `transition-all duration-350`
+              : animating
+              ? `opacity-0 max-h-0 transition-all duration-350`
+              : `hidden`
+          }
         >
-          Learn React
-        </a>
-      </header>
+          {showResults && (
+            <>
+              <Tabs
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                counts={counts}
+              />
+              <ResultList data={tabFiltered} query={query} />
+              {/* <div className="flex justify-end px-4 pb-2">
+                <button
+                  className="text-sm text-gray-500 underline"
+                  onClick={handleClear}
+                >
+                  Clear
+                </button>
+              </div> */}
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
