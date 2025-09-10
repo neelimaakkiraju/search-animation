@@ -6,6 +6,7 @@ import FilterMenu from "./components/FilterMenu";
 import ResultList from "./components/ResultList";
 
 export default function App() {
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [filters, setFilters] = useState({
@@ -14,6 +15,22 @@ export default function App() {
     chats: false,
     lists: false,
   });
+
+  // Handle filter changes
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    // If current tab is hidden, switch to 'all'
+    const currentTabEnabled =
+      activeTab === "all" ||
+      (activeTab === "files" && newFilters.files) ||
+      (activeTab === "people" && newFilters.people) ||
+      (activeTab === "chats" && newFilters.chats) ||
+      (activeTab === "lists" && newFilters.lists);
+
+    if (!currentTabEnabled) {
+      setActiveTab("all");
+    }
+  };
   const [showResults, setShowResults] = useState(true); // show all data initially
   const [animating, setAnimating] = useState(false);
 
@@ -29,13 +46,21 @@ export default function App() {
   const tabFiltered =
     activeTab === "all"
       ? filtered
-      : filtered.filter((d) => d.type === activeTab);
+      : activeTab === "files"
+      ? filtered.filter((d) => d.type === "file" || d.type === "folder")
+      : activeTab === "people"
+      ? filtered.filter((d) => d.type === "person")
+      : activeTab === "chats"
+      ? filtered.filter((d) => d.type === "chat")
+      : filtered.filter((d) => d.type === "list");
 
   const counts = {
     all: filtered.length,
     files: filtered.filter((d) => d.type === "file" || d.type === "folder")
       .length,
     people: filtered.filter((d) => d.type === "person").length,
+    chats: filtered.filter((d) => d.type === "chat").length,
+    lists: filtered.filter((d) => d.type === "list").length,
   };
 
   // Show results if showResults is true
@@ -64,9 +89,6 @@ export default function App() {
             setQuery={handleSearch}
             clear={handleClear}
           />
-          {showResults && (
-            <FilterMenu filters={filters} setFilters={setFilters} />
-          )}
         </div>
         <div
           className={
@@ -83,8 +105,21 @@ export default function App() {
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
                 counts={counts}
+                filters={filters}
+                filterMenu={
+                  <FilterMenu
+                    filters={filters}
+                    setFilters={handleFilterChange}
+                    settingsOpen={settingsOpen}
+                    setSettingsOpen={setSettingsOpen}
+                  />
+                }
               />
-              <ResultList data={tabFiltered} query={query} />
+              <ResultList
+                data={tabFiltered}
+                query={query}
+                settingsOpen={settingsOpen}
+              />
               {/* <div className="flex justify-end px-4 pb-2">
                 <button
                   className="text-sm text-gray-500 underline"
