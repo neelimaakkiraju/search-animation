@@ -55,10 +55,18 @@ export default function ResultItem(props) {
           />
           {item.status && (
             <span
-              className={`absolute bottom-0  right-0 w-3 h-3 rounded-full border-2 border-white ${
-                item.status.toLowerCase().includes("active")
+              className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
+                item.status.toLowerCase().includes("active now")
                   ? "bg-green-400"
-                  : "bg-yellow-400"
+                  : item.status.toLowerCase().includes("active") ||
+                    item.status.toLowerCase().includes("away") ||
+                    item.status.toLowerCase().includes("idle")
+                  ? "bg-yellow-400"
+                  : item.status.toLowerCase().includes("unactivated") ||
+                    item.status.toLowerCase().includes("inactive") ||
+                    item.status.toLowerCase().includes("offline")
+                  ? "bg-red-400"
+                  : "bg-gray-300"
               }`}
             />
           )}

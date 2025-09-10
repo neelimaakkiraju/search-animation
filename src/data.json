@@ -23,6 +23,12 @@
     "avatar": "https://i.pravatar.cc/40?img=3"
   },
   {
+    "type": "person",
+    "name": "Priya Nair",
+    "status": "Active now",
+    "avatar": "https://i.pravatar.cc/40?img=4"
+  },
+  {
     "type": "file",
     "name": "dribbble_animation.avi",
     "details": "in Videos • Added 1y ago"
