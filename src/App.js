@@ -82,7 +82,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md overflow-hidden">
+      <div className="bg-white shadow-lg rounded-2xl w-full max-w-xl overflow-hidden">
         <div className="flex items-center justify-between">
           <SearchBar
             query={query}

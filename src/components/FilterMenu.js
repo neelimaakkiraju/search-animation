@@ -5,7 +5,6 @@ import {
   FiUsers,
   FiMessageSquare,
   FiList,
-  FiExternalLink,
 } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 

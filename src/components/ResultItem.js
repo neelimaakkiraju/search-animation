@@ -40,21 +40,40 @@ export default function ResultItem(props) {
       layout
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`flex items-center gap-3 p-3 rounded-md cursor-pointer relative ${
+      className={`flex items-center gap-3 p-5 rounded-md cursor-pointer relative ${
         !settingsOpen ? "hover:bg-gray-50" : ""
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {item.type === "person" && (
-        <img
-          src={item.avatar}
-          alt={item.name}
-          className="w-8 h-8 rounded-full"
-        />
+        <span className="relative w-8 h-8 block">
+          <img
+            src={item.avatar}
+            alt={item.name}
+            className="w-8 h-8 rounded-md"
+          />
+          {item.status && (
+            <span
+              className={`absolute bottom-0  right-0 w-3 h-3 rounded-full border-2 border-white ${
+                item.status.toLowerCase().includes("active")
+                  ? "bg-green-400"
+                  : "bg-yellow-400"
+              }`}
+            />
+          )}
+        </span>
       )}
-      {item.type === "file" && <FiFile className="text-gray-500" />}
-      {item.type === "folder" && <FiFolder className="text-gray-500" />}
+      {item.type === "file" && (
+        <span className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100">
+          <FiFile className="text-gray-500 w-5 h-5" />
+        </span>
+      )}
+      {item.type === "folder" && (
+        <span className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100">
+          <FiFolder className="text-gray-500 w-5 h-5" />
+        </span>
+      )}
 
       <div>
         <div className="font-medium">{highlight(item.name)}</div>
