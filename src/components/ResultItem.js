@@ -47,9 +47,8 @@ export default function ResultItem(props) {
       )
     );
 
-  // Use a generic link for all items
-  const itemUrl =
-    item.url || item.profileUrl || `https://app.com/${item.id || item.name}`;
+  // Use a dummy not found page for all actions
+  const itemUrl = "https://example.com/not-found";
 
   const handleOpenTab = (e) => {
     e.stopPropagation();
