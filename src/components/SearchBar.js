@@ -23,7 +23,7 @@ export default function SearchBar({ query, setQuery, clear, isLoading }) {
         {isLoading ? (
           <AiOutlineLoading3Quarters className="text-gray-500 text-2xl animate-spin" />
         ) : (
-          <FiSearch className="text-gray-500 text-2xl" />
+          <FiSearch className="text-gray-400 text-2xl" />
         )}
         <input
           type="text"
