@@ -2,6 +2,36 @@ import { useState } from "react";
 import { FiFile, FiFolder, FiExternalLink, FiLink } from "react-icons/fi";
 import { motion } from "framer-motion";
 
+// SVG icons for image and video
+const ImageIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#6B7280" // Tailwind gray-500
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="w-5 h-5"
+  >
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+    <circle cx="8.5" cy="8.5" r="1.5" />
+    <path d="M21 15l-5-5L5 21" />
+  </svg>
+);
+const VideoIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="#6B7280" // Tailwind gray-500
+    className="w-4 h-4"
+  >
+    <polygon points="6,4 20,12 6,20" />
+  </svg>
+);
+
 export default function ResultItem(props) {
   const { item, query, settingsOpen } = props;
   const [hovered, setHovered] = useState(false);
@@ -9,7 +39,7 @@ export default function ResultItem(props) {
   const highlight = (text) =>
     text.split(new RegExp(`(${query})`, "gi")).map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
-        <mark key={i} className="bg-yellow-200">
+        <mark key={i} className="bg-orange-200">
           {part}
         </mark>
       ) : (
@@ -72,14 +102,21 @@ export default function ResultItem(props) {
           )}
         </span>
       )}
-      {item.type === "file" && (
-        <span className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100">
-          <FiFile className="text-gray-500 w-5 h-5" />
-        </span>
-      )}
       {item.type === "folder" && (
         <span className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100">
           <FiFolder className="text-gray-500 w-5 h-5" />
+        </span>
+      )}
+      {item.type === "file" && (
+        <span className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100">
+          {/* Choose icon based on file extension */}
+          {/\.(jpg|jpeg|png|gif)$/i.test(item.name) ? (
+            <ImageIcon />
+          ) : /\.(mp4|avi|mov)$/i.test(item.name) ? (
+            <VideoIcon />
+          ) : (
+            <FiFile className="text-gray-500 w-5 h-5" />
+          )}
         </span>
       )}
 

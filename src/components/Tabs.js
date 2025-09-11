@@ -77,7 +77,7 @@ export default function Tabs({
               }
             />
             <span>{tab.label}</span>
-            <span className="text-xs text-gray-400">{tab.count}</span>
+            <span className="text-xs text-gray-500 bg-gray-100 rounded-md px-2 font-semibold">{tab.count}</span>
             {activeTab === tab.id && (
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-black rounded-full" />
             )}

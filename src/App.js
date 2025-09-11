@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar";
 import Tabs from "./components/Tabs";
 import FilterMenu from "./components/FilterMenu";
 import ResultList from "./components/ResultList";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -33,6 +34,7 @@ export default function App() {
   };
   const [showResults, setShowResults] = useState(true); // show all data initially
   const [animating, setAnimating] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const filtered = data.filter((item) => {
     if (query && !item.name.toLowerCase().includes(query.toLowerCase()))
@@ -68,6 +70,15 @@ export default function App() {
     setQuery(val);
     setShowResults(true);
     setActiveTab("all");
+    if (val) {
+      setIsLoading(true);
+      // Simulate API delay
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    } else {
+      setIsLoading(false);
+    }
   };
 
   const handleClear = () => {
@@ -88,19 +99,18 @@ export default function App() {
             query={query}
             setQuery={handleSearch}
             clear={handleClear}
+            isLoading={isLoading}
           />
         </div>
-        <div
-          className={
-            showResults
-              ? `transition-all duration-350`
-              : animating
-              ? `opacity-0 max-h-0 transition-all duration-350`
-              : `hidden`
-          }
-        >
+        <AnimatePresence>
           {showResults && (
-            <>
+            <motion.div
+              key="results"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35 }}
+            >
               <Tabs
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
@@ -119,18 +129,11 @@ export default function App() {
                 data={tabFiltered}
                 query={query}
                 settingsOpen={settingsOpen}
+                isLoading={isLoading}
               />
-              {/* <div className="flex justify-end px-4 pb-2">
-                <button
-                  className="text-sm text-gray-500 underline"
-                  onClick={handleClear}
-                >
-                  Clear
-                </button>
-              </div> */}
-            </>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </div>
     </div>
   );
