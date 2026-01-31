@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Search Animation App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p><b>Modern React + Tailwind CSS search animation app</b> — fast, interactive, and easy to extend.</p>
 
-## Available Scripts
+<p>
+<img src="https://img.shields.io/badge/React-18.x-61dafb?logo=react" />
+<img src="https://img.shields.io/badge/TailwindCSS-3.x-38bdf8?logo=tailwindcss" />
+<img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Feature           | Description                                        |
+| ----------------- | -------------------------------------------------- |
+| 🔍 Search Bar     | Animated search input with instant feedback        |
+| 📋 Filter Menu    | Filter results by category or criteria             |
+| 📄 Result List    | Dynamic, animated result rendering                 |
+| ✨ Shimmer Loader | Beautiful loading animation for async data         |
+| 🗂️ Tabs           | Switch between different result views              |
+| 📱 Responsive UI  | Mobile-first, built with Tailwind CSS              |
+| ⚡ Fast & Modern  | Optimized for performance and developer experience |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Demo Mode
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+No backend? No problem!
 
-### `npm run build`
+This app runs entirely on the frontend with mock data:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Instantly loads sample data for testing and development
+- No API keys or backend required
+- No errors, just a smooth experience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack
 
-### `npm run eject`
+| Layer     | Technology                  |
+| --------- | --------------------------- |
+| Framework | React 18, Create React App  |
+| Styling   | Tailwind CSS 3              |
+| State     | React useState/useEffect    |
+| Data      | Local JSON (data.json)      |
+| Testing   | Jest, React Testing Library |
+| Tooling   | ESLint, Prettier            |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+search-animation/
+├── package.json # Project dependencies & scripts
+├── tailwind.config.js # Tailwind CSS configuration
+├── public/ # Static assets (HTML, manifest, robots)
+│ ├── index.html
+│ ├── manifest.json
+│ └── robots.txt
+├── src/ # Source code
+│ ├── App.js # Main app component
+│ ├── App.css # App styles
+│ ├── index.js # Entry point
+│ ├── data.json # Mock data
+│ ├── components/ # Reusable UI components
+│ │ ├── FilterMenu.js # Filter menu
+│ │ ├── ResultItem.js # Single result item
+│ │ ├── ResultList.js # List of results
+│ │ ├── SearchBar.js # Search input
+│ │ ├── ShimmerLoader.js # Loading animation
+│ │ └── Tabs.js # Tab navigation
+│ ├── App.test.js # App tests
+│ ├── index.css # Tailwind base styles
+│ ├── reportWebVitals.js # Performance reporting
+│ └── setupTests.js # Test setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Command       | Description              |
+| ------------- | ------------------------ |
+| npm start     | Start development server |
+| npm test      | Run tests                |
+| npm run build | Build for production     |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
