@@ -51,31 +51,30 @@ This app runs entirely on the frontend with mock data:
 
 ## Project Structure
 
-
 search-animation/
 │
-├── package.json                # Project dependencies & scripts
-├── tailwind.config.js          # Tailwind CSS configuration
-├── public/                     # Static assets (HTML, manifest, robots)
-│   ├── index.html
-│   ├── manifest.json
-│   └── robots.txt
-├── src/                        # Source code
-│   ├── App.js                  # Main app component
-│   ├── App.css                 # App styles
-│   ├── index.js                # Entry point
-│   ├── data.json               # Mock data
-│   ├── components/             # Reusable UI components
-│   │   ├── FilterMenu.js       # Filter menu
-│   │   ├── ResultItem.js       # Single result item
-│   │   ├── ResultList.js       # List of results
-│   │   ├── SearchBar.js        # Search input
-│   │   ├── ShimmerLoader.js    # Loading animation
-│   │   └── Tabs.js             # Tab navigation
-│   ├── App.test.js             # App tests
-│   ├── index.css               # Tailwind base styles
-│   ├── reportWebVitals.js      # Performance reporting
-│   └── setupTests.js           # Test setup
+├── package.json # Project dependencies & scripts
+├── tailwind.config.js # Tailwind CSS configuration
+├── public/ # Static assets (HTML, manifest, robots)
+│ ├── index.html
+│ ├── manifest.json
+│ └── robots.txt
+├── src/ # Source code
+│ ├── App.js # Main app component
+│ ├── App.css # App styles
+│ ├── index.js # Entry point
+│ ├── data.json # Mock data
+│ ├── components/ # Reusable UI components
+│ │ ├── FilterMenu.js # Filter menu
+│ │ ├── ResultItem.js # Single result item
+│ │ ├── ResultList.js # List of results
+│ │ ├── SearchBar.js # Search input
+│ │ ├── ShimmerLoader.js # Loading animation
+│ │ └── Tabs.js # Tab navigation
+│ ├── App.test.js # App tests
+│ ├── index.css # Tailwind base styles
+│ ├── reportWebVitals.js # Performance reporting
+│ └── setupTests.js # Test setup
 
 ---
 
